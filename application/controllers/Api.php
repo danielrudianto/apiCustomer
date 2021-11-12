@@ -91,52 +91,23 @@ class Api extends CI_Controller {
 
         $result           = array();
         $result['user']   = $data;
+        $result['overdue']  = 0;
+        $result['due']      = 0;
         
         $this->load->model("Invoice_model");
-        $result['overdue']        = (float)($this->Invoice_model->getStatusByCustomerUID($data['uid'])[0]->value);
-        $result['due']            = (float)($this->Invoice_model->getStatusByCustomerUID($data['uid'])[1]->value);
+        $statusArray                = $this->Invoice_model->getStatusByCustomerUID($data['uid']);
+        foreach($statusArray as $status){
+            if($status->due == 0){
+                $result['due']      = $status->value;
+            } else {
+                $result['overdue']  = $status->value;
+            }
+        }
 
         $this->load->model("Internal_bank_account_model");
         $result['account']        = $this->Internal_bank_account_model->getShownItems();
         echo json_encode($result);
     }
-    
-
-    // public function getCustomerSalesHistory()
-    // {
-    //     header('Access-Control-Allow-Origin: *');
-    //     header("Access-Control-Allow-Methods: *");
-    //     header("Content-Type:application/json");
-
-    //     $postdata = file_get_contents("php://input");
-    //     $this->load->model("Invoice_model");
-    //     $result       = $this->Invoice_model->getCustomerSalesHistory($postdata);
-
-    //     for($i = 0; $i < 12; $i++){
-	// 		$month		= date('m', strtotime("-" . $i . "months"));
-	// 		$year		= date('Y', strtotime("-" . $i . "months"));
-	// 		$batchArray[$i] = array(
-	// 			"label" => date("M Y", mktime(0,0,0,$month, 1, $year)),
-	// 			"value" => 0
-	// 		);
-	// 	}
-
-	// 	foreach($result as $data){
-	// 		$month			= $data->month;
-    //         $year			= $data->year;
-    //         $value          = $data->value;
-
-    //         $date			= mktime(0,0,0, $month, 1, $year);
-    //         $today          = strtotime("now");
-    //         $datediff		= floor(($today - $date)/(30 * 60 * 60 * 24));
-
-    //         $batchArray[$datediff]['value'] = (float)$value;
-    //         continue;
-    //     }
-        
-    //     $batch          = (object)$batchArray;
-    //     echo(json_encode($batch));
-    // }
 
     public function getCustomerInvoices($page = 1)
     {
@@ -234,9 +205,11 @@ class Api extends CI_Controller {
 		header('Access-Control-Allow-Origin: *');
         header("Access-Control-Allow-Methods: *");
         header("Content-Type:application/json");
+        header("Access-Control-Allow-Headers: Content-Type, Content-Length, Accept-Encoding");
 
         $postdata = file_get_contents("php://input");
         $request    = json_decode($postdata);
+
 		$this->load->model("Customer_model");
 		$result			= $this->Customer_model->registerCustomer($request->username, $request->password);
 		echo $result;
