@@ -85,7 +85,7 @@ class Invoice_model extends CI_Model {
 		{
 			$today			= date("Y-m-d");
 			$query		= $this->db->query("
-				SELECT invoice.*, COALESCE(receivableTable.value,0) as paid, IF(ADDDATE(invoice.date, INTERVAL deliveryOrderTable.payment DAY) < '$today', '1', '0') AS due
+				SELECT invoice.*, COALESCE(receivableTable.value,0) as paid, IF(ADDDATE(invoice.date, INTERVAL deliveryOrderTable.payment DAY) < '$today', '1', '0') AS due, ADDDATE(invoice.date, INTERVAL deliveryOrderTable.payment DAY) AS dueDate
 				FROM invoice
 				LEFT JOIN (
 					SELECT SUM(value) as value, invoice_id FROM receivable

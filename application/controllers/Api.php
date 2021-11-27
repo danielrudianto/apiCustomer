@@ -13,10 +13,10 @@ class Api extends CI_Controller {
 
     public function login()
     {
-        header('Access-Control-Allow-Origin: *');
+        header('Access-Control-Allow-Origin: https://customer.dutasaptae.management');
         header("Access-Control-Allow-Methods: *");
-        header("Content-Type:application/json");
-        header("Access-Control-Allow-Headers: Content-Type, Content-Length, Accept-Encoding");
+        header("Access-Control-Allow-Headers: Content-Type, Content-Length, Accept-Encoding, Access-Control-Allow-Origin");
+        header('Content-Type: application/json, charset=utf-8');
 
         $postdata = file_get_contents("php://input");
         $request        = json_decode($postdata);
@@ -80,10 +80,10 @@ class Api extends CI_Controller {
 
     public function getCustomerData()
     {
-        header('Access-Control-Allow-Origin: *');
+        header('Access-Control-Allow-Origin: https://customer.dutasaptae.management');
         header("Access-Control-Allow-Methods: *");
-        header("Content-Type:application/json");
-        header("Access-Control-Allow-Headers: Content-Type, Content-Length, Accept-Encoding");
+        header("Access-Control-Allow-Headers: Content-Type, Content-Length, Accept-Encoding, Access-Control-Allow-Origin");
+        header('Content-Type: application/json, charset=utf-8');
 
         $headers = apache_request_headers();
         $authorization = substr($headers['Authorization'], 7, 500);
@@ -111,10 +111,10 @@ class Api extends CI_Controller {
 
     public function getCustomerInvoices($page = 1)
     {
-        header('Access-Control-Allow-Origin: *');
+        header('Access-Control-Allow-Origin: https://customer.dutasaptae.management');
         header("Access-Control-Allow-Methods: *");
-        header("Content-Type:application/json");
-        header("Access-Control-Allow-Headers: Content-Type, Content-Length, Accept-Encoding");
+        header("Access-Control-Allow-Headers: Content-Type, Content-Length, Accept-Encoding, Access-Control-Allow-Origin");
+        header('Content-Type: application/json, charset=utf-8');
 
         $headers = apache_request_headers();
         $authorization = substr($headers['Authorization'], 7, 500);
@@ -129,7 +129,7 @@ class Api extends CI_Controller {
 
     public function getCompleteCustomerInvoices($page = 1)
     {
-        header('Access-Control-Allow-Origin: *');
+        header('Access-Control-Allow-Origin: https://customer.dutasaptae.management');
         header("Access-Control-Allow-Methods: *");
         header("Content-Type:application/json");
         header("Access-Control-Allow-Headers: Content-Type, Content-Length, Accept-Encoding");
@@ -147,10 +147,10 @@ class Api extends CI_Controller {
     }
 
     public function countCustomerInvoice(){
-        header('Access-Control-Allow-Origin: *');
+        header('Access-Control-Allow-Origin: https://customer.dutasaptae.management');
         header("Access-Control-Allow-Methods: *");
-        header("Content-Type:application/json");
-        header("Access-Control-Allow-Headers: Content-Type, Content-Length, Accept-Encoding");
+        header("Access-Control-Allow-Headers: Content-Type, Content-Length, Accept-Encoding, Access-Control-Allow-Origin");
+        header('Content-Type: application/json, charset=utf-8');
 
         $headers = apache_request_headers();
         $authorization = substr($headers['Authorization'], 7, 500);
@@ -163,10 +163,10 @@ class Api extends CI_Controller {
     }
 
     public function getCustomerPayments($page = 1){
-        header('Access-Control-Allow-Origin: *');
+        header('Access-Control-Allow-Origin: https://customer.dutasaptae.management');
         header("Access-Control-Allow-Methods: *");
-        header("Content-Type:application/json");
-        header("Access-Control-Allow-Headers: Content-Type, Content-Length, Accept-Encoding");
+        header("Access-Control-Allow-Headers: Content-Type, Content-Length, Accept-Encoding, Access-Control-Allow-Origin");
+        header('Content-Type: application/json, charset=utf-8');
 
         $headers = apache_request_headers();
         $authorization = substr($headers['Authorization'], 7, 500);
@@ -181,10 +181,10 @@ class Api extends CI_Controller {
     }
 
     public function getInvoiceByName($name){
-        header('Access-Control-Allow-Origin: *');
+        header('Access-Control-Allow-Origin: https://customer.dutasaptae.management');
         header("Access-Control-Allow-Methods: *");
-        header("Content-Type:application/json");
-        header("Access-Control-Allow-Headers: Content-Type, Content-Length, Accept-Encoding");
+        header("Access-Control-Allow-Headers: Content-Type, Content-Length, Accept-Encoding, Access-Control-Allow-Origin");
+        header('Content-Type: application/json, charset=utf-8');
 
         $headers = apache_request_headers();
         $authorization = substr($headers['Authorization'], 7, 500);
@@ -202,10 +202,10 @@ class Api extends CI_Controller {
 
 	public function register()
 	{
-		header('Access-Control-Allow-Origin: *');
+		header('Access-Control-Allow-Origin: https://customer.dutasaptae.management');
         header("Access-Control-Allow-Methods: *");
-        header("Content-Type:application/json");
-        header("Access-Control-Allow-Headers: Content-Type, Content-Length, Accept-Encoding");
+        header("Access-Control-Allow-Headers: Content-Type, Content-Length, Accept-Encoding, Access-Control-Allow-Origin");
+        header('Content-Type: application/json, charset=utf-8');
 
         $postdata = file_get_contents("php://input");
         $request    = json_decode($postdata);
@@ -217,10 +217,10 @@ class Api extends CI_Controller {
 
 	public function getCustomerSales()
 	{
-		header('Access-Control-Allow-Origin: *');
+		header('Access-Control-Allow-Origin: https://customer.dutasaptae.management');
         header("Access-Control-Allow-Methods: *");
-        header("Content-Type:application/json");
-
+        header("Access-Control-Allow-Headers: Content-Type, Content-Length, Accept-Encoding, Access-Control-Allow-Origin");
+        header('Content-Type: application/json, charset=utf-8');
         $postdata = file_get_contents("php://input");
 		$customerUID         = $postdata;
 		$this->load->model("Customer_sales_model");
@@ -230,9 +230,10 @@ class Api extends CI_Controller {
     
     public function getCustomerSalesOrderHistory()
     {
-        header('Access-Control-Allow-Origin: *');
+        header('Access-Control-Allow-Origin: https://customer.dutasaptae.management');
         header("Access-Control-Allow-Methods: *");
-        header("Content-Type:application/json");
+        header("Access-Control-Allow-Headers: Content-Type, Content-Length, Accept-Encoding, Access-Control-Allow-Origin");
+        header('Content-Type: application/json, charset=utf-8');
 
         $currentMonth       = date('m');
         $currentYear        = date('Y');
@@ -260,9 +261,10 @@ class Api extends CI_Controller {
 
     public function getSalesOrderHistory()
     {
-        header('Access-Control-Allow-Origin: *');
+        header('Access-Control-Allow-Origin: https://customer.dutasaptae.management');
         header("Access-Control-Allow-Methods: *");
-        header("Content-Type:application/json");
+        header("Access-Control-Allow-Headers: Content-Type, Content-Length, Accept-Encoding, Access-Control-Allow-Origin");
+        header('Content-Type: application/json, charset=utf-8');
         
         $id             = $this->input->get('id');
         $this->load->model("Sales_order_model");
@@ -272,13 +274,33 @@ class Api extends CI_Controller {
 
     public function getSalesOrderByName($name)
     {
-        header('Access-Control-Allow-Origin: *');
+        header('Access-Control-Allow-Origin: https://customer.dutasaptae.management');
         header("Access-Control-Allow-Methods: *");
-        header("Content-Type:application/json");
+        header("Access-Control-Allow-Headers: Content-Type, Content-Length, Accept-Encoding, Access-Control-Allow-Origin");
+        header('Content-Type: application/json, charset=utf-8');
 
         $this->load->model("Sales_order_model");
         $data           = $this->Sales_order_model->getByName($name);
         echo json_encode($data);
+    }
+
+    public function getCustomerSalesOrder($page = 1)
+    {
+        header('Access-Control-Allow-Origin: https://customer.dutasaptae.management');
+        header("Access-Control-Allow-Methods: *");
+        header("Access-Control-Allow-Headers: Content-Type, Content-Length, Accept-Encoding, Access-Control-Allow-Origin");
+        header('Content-Type: application/json, charset=utf-8');
+
+        $headers = apache_request_headers();
+        $authorization = substr($headers['Authorization'], 7, 500);
+        $data       = $this->JWT->DecodeToken($authorization);
+        $uid        = $data['uid'];
+        $offset     = ($page - 1) * 10;
+
+        $this->load->model("Sales_order_model");
+        $response['salesOrders']           = $this->Sales_order_model->getByCustomerUID($uid, $offset);
+        $response['records']                = $this->Sales_order_model->countByCustomerUID($uid);
+        echo(json_encode($response));
     }
 }
 ?>
